@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>个人简历</title>
+      <link href="/2021/12/10/%E4%B8%AA%E4%BA%BA%E7%AE%80%E4%BB%8B/"/>
+      <url>/2021/12/10/%E4%B8%AA%E4%BA%BA%E7%AE%80%E4%BB%8B/</url>
+      
+        <content type="html"><![CDATA[<p>你好！欢迎来到我的个人空间，此篇文章介绍本人能力、简历及学习历程，欢迎共同学习，在评论区和留言板留言探讨。能力有限，如博客文章等有差错可联系纠正。代码开源：<a href="https://github.com/liuziliang6">GitHub</a></p><h2 id="软件工程"><a href="#软件工程" class="headerlink" title="软件工程"></a>软件工程</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>就读于中北大学软件学院，方向-A：软件开发</p><h3 id="已具备的能力"><a href="#已具备的能力" class="headerlink" title="已具备的能力"></a>已具备的能力</h3><p>具备java语言的能力，有做出并整合 Mybatis Spring SpringMVC 的项目经验，随后代码会开源在github个人仓库中。<br>有学习算法和数据结构的学习经历。<br>能通过代码表面深入代码底层进行学习，换言之，可以读懂部分底层代码，了解“轮子”的工作原理。<br>具备计算机网络原理的知识。<br>学习过CE工具并可以熟练运用，懂逆向思维。<br>学习过 OWASP TOP 10 ，懂的代码编写可能出现的漏洞，会注意开发时的代码安全。</p><h3 id="学习中"><a href="#学习中" class="headerlink" title="学习中"></a>学习中</h3><p>正在加强对SpringBoot框架的认识学习，学习”轮子“的用法，通过“轮子”去认识底层的代码原理。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 个人简历 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 个人简历 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>HelloWorld！</title>
       <link href="/2021/12/06/HelloWorld/"/>
       <url>/2021/12/06/HelloWorld/</url>
