@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>CheatEngine的使用</title>
+      <link href="/2021/12/11/CheatEngine%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+      <url>/2021/12/11/CheatEngine%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<p>逆向工具 CheatEngine 的具体使用方法，本文以 植物大战僵尸 为例，通过修改游戏中的数据达到学习逆向思维和CE工具的基本用法。<br>CE工具下载官网传送门： <a href="https://cheatengine.org/">Cheat Engine</a> </p><h2 id="CE工具-简介"><a href="#CE工具-简介" class="headerlink" title="CE工具 简介"></a>CE工具 简介</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 逆向工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 逆向工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>个人简历</title>
       <link href="/2021/12/10/%E4%B8%AA%E4%BA%BA%E7%AE%80%E4%BB%8B/"/>
       <url>/2021/12/10/%E4%B8%AA%E4%BA%BA%E7%AE%80%E4%BB%8B/</url>
