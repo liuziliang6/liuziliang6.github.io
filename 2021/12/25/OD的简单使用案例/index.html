@@ -470,14 +470,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    149
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -498,10 +498,66 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="软件逆向和OllyDbg简介"><a href="#软件逆向和OllyDbg简介" class="headerlink" title="软件逆向和OllyDbg简介"></a>软件逆向和OllyDbg简介</h2><ol>
-<li>软件逆向是通过反汇编和调试等手段，分析计算机程序的二进制可执行代码从而获得程序的算法细节和实现原理的技术。因为是要进行反汇编，所以了解一些常见的汇编指令，读懂简单的汇编程序是非常必要的。</li>
-<li>OllyDbg，简称 OD，是一款具有可视化界面的用户模式调试器，结合了动态调试和静态分析，具有强大的反汇编引擎，功能强大且容易上手。</li>
-<li><img src="/2021/12/25/OD%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/OD%E7%AE%80%E4%BB%8B.png"> </li>
+<li><p>软件逆向是通过反汇编和调试等手段，分析计算机程序的二进制可执行代码从而获得程序的算法细节和实现原理的技术。因为是要进行反汇编，所以了解一些常见的汇编指令，读懂简单的汇编程序是非常必要的。</p>
+</li>
+<li><p>OllyDbg，简称 OD，是一款具有可视化界面的用户模式调试器，结合了动态调试和静态分析，具有强大的反汇编引擎，功能强大且容易上手。</p>
+</li>
 </ol>
+<hr>
+<h2 id="OllyDbg安装和基本功能介绍"><a href="#OllyDbg安装和基本功能介绍" class="headerlink" title="OllyDbg安装和基本功能介绍"></a>OllyDbg安装和基本功能介绍</h2><p>OD可以去 吾爱破解网站 找资源，或者选择去官网。</p>
+<p>OllyDbg 中各个窗口的功能如下图。简单解释一下各个窗口的功能：</p>
+<p>反汇编窗口：显示被调试程序的反汇编代码，标题栏上的地址、HEX 数据、反汇编、注释可以通过在窗口中右击出现的菜单 界面选项-&gt;隐藏标题 或 显示标题 来进行切换是否显示。用鼠标左键点击注释标签可以切换注释显示的方式。</p>
+<p>寄存器窗口：显示当前所选线程的 CPU 寄存器内容。同样点击标签 寄存器 (FPU) 可以切换显示寄存器的方式。</p>
+<p>信息窗口：显示反汇编窗口中选中的第一个命令的参数及一些跳转目标地址、字串等。</p>
+<p>数据窗口：显示内存或文件的内容。右键菜单可用于切换显示方式。</p>
+<p>堆栈窗口：显示当前线程的堆栈。</p>
+<p><img src="D:\HexoBlog\source_posts\OD的简单使用案例\OD简介.png"></p>
+<p>调试中我们经常要用到的快捷键有这些：</p>
+<p>F2：设置断点，只要在光标定位的位置（上图中灰色条）按F2键即可，再按一次F2键则会删除断点。（相当于 SoftICE 中的 F9）</p>
+<p>F8：单步步过。每按一次这个键执行一条反汇编窗口中的一条指令，遇到 CALL 等子程序不进入其代码。（相当于 SoftICE 中的 F10）</p>
+<p>F7：单步步入。功能同单步步过(F8)类似，区别是遇到 CALL 等子程序时会进入其中，进入后首先会停留在子程序的第一条指令上。（相当于 SoftICE 中的 F8）</p>
+<p>F4：运行到选定位置。作用就是直接运行到光标所在位置处暂停。（相当于 SoftICE 中的 F7）</p>
+<p>F9：运行。按下这个键如果没有设置相应断点的话，被调试的程序将直接开始运行。（相当于 SoftICE 中的 F5）</p>
+<p>CTR+F9：执行到返回。此命令在执行到一个 ret (返回指令)指令时暂停，常用于从系统领空返回到我们调试的程序领空。（相当于 SoftICE 中的 F12）</p>
+<p>ALT+F9：执行到用户代码。可用于从系统领空快速返回到我们调试的程序领空。（相当于 SoftICE 中的 F11）</p>
+<p>上面提到的几个快捷键对于一般的调试基本上已够用了。要开始调试只需设置好断点，找到你感兴趣的代码段再按 F8 或 F7 键来一条条分析指令功能就可以了。</p>
+<hr>
+<h2 id="软件破解的过程描述及案例详解"><a href="#软件破解的过程描述及案例详解" class="headerlink" title="软件破解的过程描述及案例详解"></a>软件破解的过程描述及案例详解</h2><p>将会以破解Acid burn.exe 执行文件为例，进行案例详解，便于理解OD的用法；本例以逆向思维进行破解软件的 序列码 为例，过程如下：</p>
+<p>逆向破解Acid burn.exe，首先双击OD的运行按钮或者F9运行，打开先来运行看看：</p>
+<p><img src="D:\HexoBlog\source_posts\OD的简单使用案例\2.png"></p>
+<p>然后继续 点击 确定；</p>
+<p><img src="D:\HexoBlog\source_posts\OD的简单使用案例\3.png"></p>
+<p>以第一个 serial/Name 为例子， 最后一个 serial 是只有一个序列号的练习，照猫画虎，和第一个是一个道理，讲完你就懂了：</p>
+<p>点击第一个serial/name，输入name 和 序列号(serial)</p>
+<p><img src="D:\HexoBlog\source_posts\OD的简单使用案例\4.png"></p>
+<p>Name：123456789</p>
+<p>Serial：qwerdfl</p>
+<p>我输入了 如上两个 ， 随意输入即可。</p>
+<p>然后点击check it baby。弹出窗口如下：注意：期间要在OD取消暂停，然后运行起来exe才能继续运行！在弹出的 Try Again 界面不要动（不要关闭这个对话框），我们要从这里开始调试了。</p>
+<p><img src="D:\HexoBlog\source_posts\OD的简单使用案例\5.png"></p>
+<p>这里讲一下为什么要这样做。因为我们知道程序后台肯定是由一个正确的序列号的（不管是代码写死的，还是动态生成的，反正在点击验证按钮的时候，这个序列号肯定是生成好的），验证过程就是我输入的序列号跟后台生成的正确的序列号比较的过程。而验证的过程肯定是在弹出这个窗口之前发生的。</p>
+<p>所以，思路就来了，我们可以找到弹出对话框的代码处，从此处入手向前寻找，只要找到验证过程发生的位置，程序基本上就可以破解了。</p>
+<p>思路讲到这里，下面我们接着操作。</p>
+<p>点击 Window –&gt; 7 call stack of main thread ，或者直接点击工具栏中的 K 按钮，打开堆栈窗口。</p>
+<p><img src="D:\HexoBlog\source_posts\OD的简单使用案例\6.png"></p>
+<p>可以看到，观察其中的 MessageBox 字样（我的经验是，最好从下往上找，因为下面的是新弹出的），我们找到了图中箭头所指的那一行（结合那一行下面的 Text 和 Title 里的文字，我们基本上可以确定，这个 MessageBox 就是我们之前弹出没关的那个窗口）</p>
+<p>鼠标选中这一行 <strong>也就是&lt;jmp 开头的那一行</strong> (上图找)，右键，<code>show call</code>（显示调用），点击之后会跳转到 main thread 窗口。</p>
+<p><img src="D:\HexoBlog\source_posts\OD的简单使用案例\7.png"></p>
+<p>图中选中的这一行，就是反汇编之后，程序中控制弹出提示框的语句。</p>
+<p>根据我们之前的分析，序列号验证的逻辑肯定就在这句前面不远处，范围缩小了，我们把代码往上翻一翻找一找。</p>
+<p><img src="D:\HexoBlog\source_posts\OD的简单使用案例\8.png"></p>
+<p>如图中所示，没翻多远，我们找到了 push ebp 这句代码，这句代码在汇编语言中，一般在程序入口会出现，我们在这里 F2 打个断点，待会儿可以从这儿开始逐行调试看看。</p>
+<p>打完断点之后，我们按 F9 继续运行程序，然后重新按 Check it Baby！按钮验证，此时没有直接弹出错误的提示框，而是触发了断点程序暂停，停在了我们之前打断点的那一行。</p>
+<p><img src="D:\HexoBlog\source_posts\OD的简单使用案例\9.png"></p>
+<p>按道理，我们应该按 F8 逐行运行，观察程序运行过程中代码跳转情况，同时观察下方堆栈窗口的情况。不过，我们这次的运气实在时有点好，在触发断点的时候，我们可以看到下方出现了四行很可疑的字符串。</p>
+<p>将像序列码的那一串复制，重新运行程序，输入刚才找到的那串字符，点击按钮验证。</p>
+<p>如下图，发现破解成功！</p>
+<p><img src="D:\HexoBlog\source_posts\OD的简单使用案例\10.png"></p>
+<hr>
+<h2 id="总结·心得"><a href="#总结·心得" class="headerlink" title="总结·心得"></a>总结·心得</h2><p>使用OD需要有汇编语言的基础，没有基础将读不懂代码，OD有许多功能可以去运用；通过逆向工程可以了解恶意软件的工作原理并有可能对其功能进行重新设计，学好汇编语言是运用OD的基础。</p>
+<hr>
+<h2 id="OD资源-Acid-burn-exe"><a href="#OD资源-Acid-burn-exe" class="headerlink" title="OD资源 + Acid burn.exe"></a>OD资源 + Acid burn.exe</h2><p>为方便笨B  本人百度网盘放入资源 自行提取： </p>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1pcXba9sA65vJ0Am8lbZz-g">https://pan.baidu.com/s/1pcXba9sA65vJ0Am8lbZz-g</a> 提取码: 6e1f </p>
 
                 
             </div>
@@ -1293,7 +1349,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">503</span>&nbsp;字
+                class="white-color">2.2k</span>&nbsp;字
             
             
             
