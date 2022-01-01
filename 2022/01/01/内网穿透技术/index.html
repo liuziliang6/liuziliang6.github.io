@@ -470,7 +470,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    342
                 </div>
                 
 
@@ -497,7 +497,23 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h2><p>思路想法：</p>
+<p>完成钓鱼网站的操作后，需要进一步布置到公网上，因为这只是完成了再内网中可以进行访问，也就是在你这一个小的局域网中，部署到公网上，正常情况是需要服务器，但这里可以直接运用一个技术 ****内网穿透****，直接将虚拟机ip想显示的东西，映射到公网上直接访问！</p>
+<p>在学会上面的基础上再进行学习内网穿透，步骤如下：</p>
+<p>一直ctrl+c 退回到kali的初始状态 重新开始，然后选择第3个custom import意思就是 自定义模式：如下图</p>
+<p><img src="/2022/01/01/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%8A%80%E6%9C%AF/1641010747079.png"></p>
+<p>然后如下图，输入：2</p>
+<p><img src="/2022/01/01/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%8A%80%E6%9C%AF/1641010767841.png"></p>
+<p>出现下图就表示成功！</p>
+<p><img src="/2022/01/01/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%8A%80%E6%9C%AF/1641010785539.png"></p>
+<p>然后再打开一个终端，输入ifconfig 查找到自己虚拟机的ip地址，然后复制，</p>
+<p>这里需要复制一个dvwa的文件到kali虚拟机里，确保放在root下，路径就是：/root/dvwa</p>
+<p><img src="/2022/01/01/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%8A%80%E6%9C%AF/1641010807869.png"></p>
+<p>之后需要下载一个软件：花生壳，选择http协议，输入域名，内网ip就是刚刚复制的虚拟机ip，内网端口默认的为80。</p>
+<p><img src="/2022/01/01/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%8A%80%E6%9C%AF/1641010825497.png"></p>
+<p>这样就可以在公网中访问到你的钓鱼网页了。注意事项：注意虚拟机是桥接模式！</p>
+<p>至此简单钓鱼网站的构建就完成了。</p>
+
                 
             </div>
             <hr/>
@@ -1286,7 +1302,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.2k</span>&nbsp;字
+                class="white-color">3.6k</span>&nbsp;字
             
             
             
