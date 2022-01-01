@@ -3,7 +3,7 @@
  document.addEventListener('visibilitychange', function () {
      if (document.hidden) {
          $('[rel="icon"]').attr('href', "https://cdn.jsdelivr.net/gh/guixinchn/image/blog/favicon.png");
-         document.title = '我相信你还会回来的！';
+         document.title = '娜娜子姐姐！';
          clearTimeout(titleTime);
      }
      else {
