@@ -4,16 +4,16 @@
   
     
     <entry>
-      <title>JavaWeb-ContextServlet的理解运用</title>
-      <link href="/2022/01/26/JavaWeb-ContextServlet%E7%9A%84%E7%90%86%E8%A7%A3%E8%BF%90%E7%94%A8/"/>
-      <url>/2022/01/26/JavaWeb-ContextServlet%E7%9A%84%E7%90%86%E8%A7%A3%E8%BF%90%E7%94%A8/</url>
+      <title>JavaWeb-ServletContext的理解运用</title>
+      <link href="/2022/01/26/JavaWeb-ServletContext%E7%9A%84%E7%90%86%E8%A7%A3%E8%BF%90%E7%94%A8/"/>
+      <url>/2022/01/26/JavaWeb-ServletContext%E7%9A%84%E7%90%86%E8%A7%A3%E8%BF%90%E7%94%A8/</url>
       
         <content type="html"><![CDATA[]]></content>
       
       
       <categories>
           
-          <category> ContextServlet的理解 </category>
+          <category> ServletContext的理解 </category>
           
       </categories>
       
