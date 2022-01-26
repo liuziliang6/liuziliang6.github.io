@@ -8,7 +8,7 @@
       <link href="/2022/01/26/JavaWeb-ServletContext%E7%9A%84%E7%90%86%E8%A7%A3%E8%BF%90%E7%94%A8/"/>
       <url>/2022/01/26/JavaWeb-ServletContext%E7%9A%84%E7%90%86%E8%A7%A3%E8%BF%90%E7%94%A8/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="Servlet原理"><a href="#Servlet原理" class="headerlink" title="Servlet原理"></a>Servlet原理</h2><p>Servlet是由Web服务器调用，web服务器在收到请求后会：</p><p><img src="/2022/01/26/JavaWeb-ServletContext%E7%9A%84%E7%90%86%E8%A7%A3%E8%BF%90%E7%94%A8/1.png"></p><hr><h2 id="注意Mapping（映射）"><a href="#注意Mapping（映射）" class="headerlink" title="注意Mapping（映射）"></a>注意Mapping（映射）</h2><p>通配符的情况，需要自己去尝试写代码发现问题。（细节的问题）</p><p>有优先级的情况存在。</p>]]></content>
       
       
       <categories>
